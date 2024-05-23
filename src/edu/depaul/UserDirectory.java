@@ -8,6 +8,8 @@ public class UserDirectory {
  
 	private UserDirectory() {
 		users = new ArrayList<User>();
+		users.add(new User("admin", "password123", true));
+		users.add(new User("customer", "password123", false));
 	}
 
 	public static UserDirectory getInstance() {
@@ -16,9 +18,14 @@ public class UserDirectory {
 		}
 		return instance;
 	}
-	
-	public Boolean empty() {
-		return users.size() == 0;
+
+	public User signIn(String username, String password) {
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username) && users.get(i).getPassword().equalsIgnoreCase(password)) {
+				return users.get(i);
+			}
+		}
+		return null;
 	}
 
 	public void addUser(User user) {
@@ -33,7 +40,7 @@ public class UserDirectory {
 
 	public void printUsers() {
 		if (users.size() == 0) {
-			System.out.println("No usersare signed up.");
+			System.out.println("No users are signed up.");
 			return;
 		}
 		for (int i = 0; i < users.size(); i++) {
