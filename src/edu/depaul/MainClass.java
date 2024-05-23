@@ -8,7 +8,6 @@ public class MainClass {
 	public static void main(String[] args) {
 		UserDirectory users = UserDirectory.getInstance();
 		ProductCatalog catalog = ProductCatalog.getInstance();
-		ProductFactory productFactory = new ProductFactory();
 
 		User currentUser = null;
 		Scanner reader = new Scanner(System.in);
@@ -45,16 +44,16 @@ public class MainClass {
 						);
 				if (currentUser.isAdmin()) {
 					System.out.println("\nAdmin options: "
-							+ "\n7) Add a product to product catalog"
-							+ "\n8) Remove a product from product catalog"
-							+ "\n9) Create a new admin user"
-							+ "\n10) Delete a user"
-							);
+						+ "\n7) Add a product to product catalog"
+						+ "\n8) Remove a product from product catalog"
+						+ "\n9) Create a new admin user"
+						+ "\n10) Delete a user"
+						);
 				}
 				int selection = reader.nextInt();
 				
 				if (selection == 1) {
-					System.out.println("TODO: print product catalog");
+					catalog.printProductCatalog();
 				}
 				else if (selection == 2) {
 					System.out.println("TODO: print shopping cart");
