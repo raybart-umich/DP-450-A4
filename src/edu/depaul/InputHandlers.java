@@ -15,20 +15,27 @@ public class InputHandlers {
 		return newUser;
 	}
 	
-	public static User createNewUser(Scanner reader, UserDirectory users) {
+	public static User createNewUser(Scanner reader, UserDirectory users, boolean inputAdmin) {
 		System.out.println("Enter new username: ");
 		String inputUsername = reader.next();
 		
 		System.out.println("Enter new password: ");
 		String inputPassword = reader.next();
 		
-		System.out.println("Is the new user an admin account? ('true' or 'false'): ");
-		boolean inputAdmin = reader.nextBoolean();
-		
 		User newUser= new User(inputUsername, inputPassword, inputAdmin);
 		users.addUser(newUser);
 
 		return newUser;
 	}
+
+	public static void adminRemoveUser(Scanner reader, UserDirectory users, String currentUsername) {
+		System.out.println("Enter username for user to be deleted: ");
+		String inputUsername = reader.next();
+		
+		if (inputUsername.equalsIgnoreCase(currentUsername)) {
+			System.out.println("Cannot delete account of current user.");
+			return;
+		}
+		users.removeUser(inputUsername);
+	}
 }
-	

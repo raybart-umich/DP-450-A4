@@ -33,9 +33,15 @@ public class UserDirectory {
 		System.out.println("User " + user.getUsername() + " signed up.");
 	}
 
-	public void removeUser(User user) {
-		users.remove(user);
-		System.out.println("User " + user.getUsername() + " removed.");
+	public void removeUser(String username) {
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+				users.remove(users.get(i));
+				System.out.println("User " + username + " removed.");
+				return;
+			}
+		}
+		System.out.println("User " + username + " not found.");
 	}
 
 	public void printUsers() {
