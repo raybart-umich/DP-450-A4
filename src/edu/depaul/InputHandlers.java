@@ -38,4 +38,25 @@ public class InputHandlers {
 		}
 		users.removeUser(inputUsername);
 	}
+	
+	public static void adminCreateProduct(Scanner reader, ProductCatalog catalog) {
+		System.out.println("Enter type for new product: ");
+		String inputType = reader.next();
+
+		System.out.println("Enter name for new product: ");
+		String inputName = reader.next();
+
+		System.out.println("Enter price for new product: ");
+		double inputPrice = reader.nextDouble();
+
+		Product newProduct =ProductFactory.getProduct(inputType, inputName, inputPrice);
+		catalog.addProduct(newProduct);
+	}
+	
+	public static void adminRemoveProduct(Scanner reader, ProductCatalog catalog) {
+		System.out.println("Enter name of product to be removed: ");
+		String inputName = reader.next();
+
+		catalog.removeProduct(inputName);
+	}
 }

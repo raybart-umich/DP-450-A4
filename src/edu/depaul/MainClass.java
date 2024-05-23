@@ -7,9 +7,10 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		UserDirectory users = UserDirectory.getInstance();
+		ProductCatalog catalog = ProductCatalog.getInstance();
 		ProductFactory productFactory = new ProductFactory();
-		User currentUser = null;
 
+		User currentUser = null;
 		Scanner reader = new Scanner(System.in);
 
 		// Program
@@ -74,10 +75,10 @@ public class MainClass {
 				// admin only
 				else if (currentUser.isAdmin()) {
 					if (selection == 7) {
-						System.out.println("TODO: add product to catalog");
+						InputHandlers.adminCreateProduct(reader, catalog);
 					}
 					else if (selection == 8) {
-						System.out.println("TODO: remove product from catalog");
+						InputHandlers.adminRemoveProduct(reader, catalog);
 					}
 					else if (selection == 9) {
 						InputHandlers.createNewUser(reader, users, true);
