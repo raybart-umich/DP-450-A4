@@ -23,16 +23,19 @@ public class MainClass {
 					int selection = reader.nextInt();
 					
 					if (selection == 1) {
-						currentUser = InputHandlers.signInUser(reader, users);
+						currentUser = InputHandlers.inputSignInUser(reader, users);
 					}
 					else if (selection == 2) {
-						currentUser = InputHandlers.createNewUser(reader, users, false);
+						currentUser = InputHandlers.inputCreateNewUser(reader, users, false);
 					}
 					if (currentUser == null) {
 						throw new InputMismatchException();
 					}
 					System.out.println("Signed in as " + currentUser.getUsername() + ".");
 				}
+				
+				ShoppingCart currentUserCart = ShoppingCart.getInstance();
+				currentUserCart.setCartProducts(currentUser.getCart());
 
 				System.out.println("\nSelect from the following options: "
 						+ "\n1) View product catalog"
@@ -56,34 +59,36 @@ public class MainClass {
 					catalog.printProductCatalog();
 				}
 				else if (selection == 2) {
-					System.out.println("TODO: print shopping cart");
+					currentUserCart.printCart();
 				}
 				else if (selection == 3) {
-					System.out.println("TODO: add product to shopping cart");
+					currentUserCart.addProductToCart(InputHandlers.inputGetProduct(reader, catalog));
 				}
 				else if (selection == 4) {
-					System.out.println("TODO: remove product from shopping cart");
+					currentUserCart.removeProductFromCart(InputHandlers.inputGetProduct(reader, catalog));
 				}
 				else if (selection == 5) {
 					System.out.println("TODO: check out");
 				}
 				else if (selection == 6) {
+					currentUser.saveCart();
+					currentUserCart.clearCart();
 					currentUser = null;
 				}
 
 				// admin only
 				else if (currentUser.isAdmin()) {
 					if (selection == 7) {
-						InputHandlers.adminCreateProduct(reader, catalog);
+						InputHandlers.inputCreateProduct(reader, catalog);
 					}
 					else if (selection == 8) {
-						InputHandlers.adminRemoveProduct(reader, catalog);
+						InputHandlers.inputRemoveProduct(reader, catalog);
 					}
 					else if (selection == 9) {
-						InputHandlers.createNewUser(reader, users, true);
+						InputHandlers.inputCreateNewUser(reader, users, true);
 					}
 					else if (selection == 10) {
-						InputHandlers.adminRemoveUser(reader, users, currentUser.getUsername());
+						InputHandlers.inputRemoveUser(reader, users, currentUser.getUsername());
 					}
 				}
 			} catch (InputMismatchException e) {

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputHandlers {
 
-	public static User signInUser(Scanner reader, UserDirectory users) {
+	public static User inputSignInUser(Scanner reader, UserDirectory users) {
 		System.out.println("Enter your username: ");
 		String inputUsername = reader.next();
 		
@@ -15,7 +15,7 @@ public class InputHandlers {
 		return newUser;
 	}
 	
-	public static User createNewUser(Scanner reader, UserDirectory users, boolean inputAdmin) {
+	public static User inputCreateNewUser(Scanner reader, UserDirectory users, boolean inputAdmin) {
 		System.out.println("Enter new username: ");
 		String inputUsername = reader.next();
 		
@@ -28,7 +28,7 @@ public class InputHandlers {
 		return newUser;
 	}
 
-	public static void adminRemoveUser(Scanner reader, UserDirectory users, String currentUsername) {
+	public static void inputRemoveUser(Scanner reader, UserDirectory users, String currentUsername) {
 		System.out.println("Enter username for user to be deleted: ");
 		String inputUsername = reader.next();
 		
@@ -39,7 +39,7 @@ public class InputHandlers {
 		users.removeUser(inputUsername);
 	}
 	
-	public static void adminCreateProduct(Scanner reader, ProductCatalog catalog) {
+	public static void inputCreateProduct(Scanner reader, ProductCatalog catalog) {
 		System.out.println("Enter type for new product: ");
 		String inputType = reader.next();
 
@@ -53,10 +53,18 @@ public class InputHandlers {
 		catalog.addProduct(newProduct);
 	}
 	
-	public static void adminRemoveProduct(Scanner reader, ProductCatalog catalog) {
+	public static void inputRemoveProduct(Scanner reader, ProductCatalog catalog) {
 		System.out.println("Enter name of product to be removed: ");
 		String inputName = reader.next();
 
 		catalog.removeProduct(inputName);
 	}
+	
+	public static Product inputGetProduct(Scanner reader, ProductCatalog catalog) {
+		System.out.println("Enter product name: ");
+		String inputName = reader.next();
+		
+		return catalog.getProduct(inputName);
+	}
+	
 }

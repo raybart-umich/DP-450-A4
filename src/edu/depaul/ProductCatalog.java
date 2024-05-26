@@ -1,8 +1,7 @@
 package edu.depaul;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+
 
 public class ProductCatalog {
 	private static ProductCatalog instance;
@@ -32,7 +31,7 @@ public class ProductCatalog {
 
 	public Product getProduct(String inputProductName) {
 		for (int i = 0; i < catalog.size(); i++) {
-			if (catalog.get(i).getName() == inputProductName) {
+			if (catalog.get(i).getName().equalsIgnoreCase(inputProductName)) {
 				return catalog.get(i);
 			}
 		}
