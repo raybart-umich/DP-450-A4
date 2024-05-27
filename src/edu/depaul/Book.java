@@ -28,15 +28,5 @@ public class Book implements Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	@Override
-	public void addToCart() {
-		System.out.println("TODO: add book to cart.");
-	}
-	
-	@Override
-	public void removeFromCart() {
-		System.out.println("TODO: remove book from cart");
-	}
 
 }

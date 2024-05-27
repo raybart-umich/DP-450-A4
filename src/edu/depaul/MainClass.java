@@ -16,11 +16,12 @@ public class MainClass {
 		while (true) {
 			try {
 				if (currentUser == null) {
-					System.out.println("Select from the following options: "
+					System.out.println("----------------------------------------"
+							+ "\nSelect from the following options: "
 							+ "\n1) Sign in to an existing account" 
 							+ "\n2) Create a new account"
 							);
-					int selection = reader.nextInt();
+					int selection = Integer.parseInt(reader.nextLine());
 					
 					if (selection == 1) {
 						currentUser = InputHandlers.inputSignInUser(reader, users);
@@ -37,7 +38,8 @@ public class MainClass {
 				ShoppingCart currentUserCart = ShoppingCart.getInstance();
 				currentUserCart.setCartProducts(currentUser.getCart());
 
-				System.out.println("\nSelect from the following options: "
+				System.out.println("\n----------------------------------------"
+						+ "\nSelect from the following options: "
 						+ "\n1) View product catalog"
 						+ "\n2) View shopping cart"
 						+ "\n3) Add a product to shopping cart"
@@ -53,7 +55,7 @@ public class MainClass {
 						+ "\n10) Delete a user"
 						);
 				}
-				int selection = reader.nextInt();
+				int selection = Integer.parseInt(reader.nextLine());
 				
 				if (selection == 1) {
 					catalog.printProductCatalog();
@@ -68,7 +70,7 @@ public class MainClass {
 					currentUserCart.removeProductFromCart(InputHandlers.inputGetProduct(reader, catalog));
 				}
 				else if (selection == 5) {
-					System.out.println("TODO: check out");
+					InputHandlers.inputCheckout(reader, currentUser, currentUserCart);
 				}
 				else if (selection == 6) {
 					currentUser.saveCart();
@@ -90,7 +92,15 @@ public class MainClass {
 					else if (selection == 10) {
 						InputHandlers.inputRemoveUser(reader, users, currentUser.getUsername());
 					}
+					else {
+						System.out.println("Invalid input. Please try again.");
+					}
 				}
+				
+				else {
+					System.out.println("Invalid input. Please try again.");
+				}
+
 			} catch (InputMismatchException e) {
 	            System.out.println("Invalid input.");
 	            System.out.println("\n");

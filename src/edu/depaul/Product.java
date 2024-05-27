@@ -5,7 +5,4 @@ public interface Product {
 	public void setName(String name);
 	public double getPrice();
 	public void setPrice(double Price);
-
-	public void addToCart();
-	public void removeFromCart();
 }

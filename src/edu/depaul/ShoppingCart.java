@@ -39,6 +39,14 @@ public class ShoppingCart {
 		}
 	}
 	
+	public double getTotal() {
+		double total = 0;
+		for (int i = 0; i < cart.size(); i++) {
+			total += cart.get(i).getPrice();
+		}
+		return total;
+	}
+	
 	public void clearCart() {
 		cart.clear();
 	}
