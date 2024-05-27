@@ -39,7 +39,7 @@ public class InputHandlers {
 		users.removeUser(inputUsername);
 	}
 	
-	public static void inputCreateProduct(Scanner reader, ProductCatalog catalog) {
+	public static Product inputCreateProduct(Scanner reader, ProductCatalog catalog) {
 		System.out.print("Enter type for new product: ");
 		String inputType = reader.nextLine();
 
@@ -51,13 +51,15 @@ public class InputHandlers {
 
 		Product newProduct =ProductFactory.getProduct(inputType, inputName, inputPrice);
 		catalog.addProduct(newProduct);
+		
+		return newProduct;
 	}
 	
-	public static void inputRemoveProduct(Scanner reader, ProductCatalog catalog) {
+	public static Product inputRemoveProduct(Scanner reader, ProductCatalog catalog) {
 		System.out.print("Enter name of product to be removed: ");
 		String inputName = reader.nextLine();
 
-		catalog.removeProduct(inputName);
+		return catalog.removeProduct(inputName);
 	}
 	
 	public static Product inputGetProduct(Scanner reader, ProductCatalog catalog) {

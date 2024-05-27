@@ -44,15 +44,17 @@ public class ProductCatalog {
 		System.out.println("Product " + product.getName() + " added to catalog.");
 	}
 	
-	public void removeProduct(String inputProductName) {
+	public Product removeProduct(String inputProductName) {
 		for (int i = 0; i < catalog.size(); i++) {
 			if (catalog.get(i).getName().equalsIgnoreCase(inputProductName)) {
+				Product temp = catalog.get(i);
 				catalog.remove(i);
 				System.out.println("Product " + inputProductName + " removed from catalog.");
-				return;
+				return temp;
 			}
 		}
 		System.out.println("Product not found.");
+		return null;
 	}
 
 }

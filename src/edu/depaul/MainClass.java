@@ -22,7 +22,7 @@ public class MainClass {
 							+ "\n2) Create a new account"
 							);
 					int selection = Integer.parseInt(reader.nextLine());
-					
+
 					if (selection == 1) {
 						currentUser = InputHandlers.inputSignInUser(reader, users);
 					}
@@ -34,7 +34,7 @@ public class MainClass {
 					}
 					System.out.println("Signed in as " + currentUser.getUsername() + ".");
 				}
-				
+
 				ShoppingCart currentUserCart = ShoppingCart.getInstance();
 				currentUserCart.setCartProducts(currentUser.getCart());
 
@@ -53,10 +53,11 @@ public class MainClass {
 						+ "\n8) Remove a product from product catalog"
 						+ "\n9) Create a new admin user"
 						+ "\n10) Delete a user"
+						+ "\n11) Clear log"
 						);
 				}
 				int selection = Integer.parseInt(reader.nextLine());
-				
+
 				if (selection == 1) {
 					catalog.printProductCatalog();
 				}
@@ -92,11 +93,14 @@ public class MainClass {
 					else if (selection == 10) {
 						InputHandlers.inputRemoveUser(reader, users, currentUser.getUsername());
 					}
+					else if (selection == 11) {
+						Logger.clearLog();
+					}
 					else {
 						System.out.println("Invalid input. Please try again.");
 					}
 				}
-				
+
 				else {
 					System.out.println("Invalid input. Please try again.");
 				}
