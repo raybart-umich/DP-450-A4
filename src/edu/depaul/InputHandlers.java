@@ -12,6 +12,8 @@ public class InputHandlers {
 		String inputPassword = reader.nextLine();
 		
 		User newUser= users.signIn(inputUsername, inputPassword);
+		
+		Logger.log("User " + newUser.getUsername() + " signed in.");
 		return newUser;
 	}
 	
@@ -25,6 +27,7 @@ public class InputHandlers {
 		User newUser= new User(inputUsername, inputPassword, inputAdmin);
 		users.addUser(newUser);
 
+		Logger.log("User " + newUser.getUsername() + " created.");
 		return newUser;
 	}
 
@@ -36,7 +39,9 @@ public class InputHandlers {
 			System.out.println("Cannot delete account of current user.");
 			return;
 		}
+		
 		users.removeUser(inputUsername);
+		Logger.log("User " + inputUsername + " removed.");
 	}
 	
 	public static Product inputCreateProduct(Scanner reader, ProductCatalog catalog) {
@@ -52,6 +57,7 @@ public class InputHandlers {
 		Product newProduct =ProductFactory.getProduct(inputType, inputName, inputPrice);
 		catalog.addProduct(newProduct);
 		
+		Logger.log("Product " + newProduct.getName() + " added to catalog.");
 		return newProduct;
 	}
 	
@@ -59,6 +65,7 @@ public class InputHandlers {
 		System.out.print("Enter name of product to be removed: ");
 		String inputName = reader.nextLine();
 
+		Logger.log("Product " + inputName + " added to catalog.");
 		return catalog.removeProduct(inputName);
 	}
 	
@@ -69,7 +76,7 @@ public class InputHandlers {
 		return catalog.getProduct(inputName);
 	}
 	
-	public static void inputCheckout(Scanner reader, User user, ShoppingCart cart) {
+	public static void inputCheckout(Scanner reader, User currentUser, ShoppingCart cart) {
 		System.out.println("Checking out. Cart contents:");
 		cart.printCart();
 		
@@ -84,8 +91,10 @@ public class InputHandlers {
 		System.out.print("Enter 4 digit PIN: ");
 		int inputPin = Integer.parseInt(reader.nextLine());
 		
-		user.saveCart();
 		cart.clearCart();
+		currentUser.saveCart();
+		
+		Logger.log("User " + currentUser.getUsername() + " checked out their cart.");
 		System.out.println("Payment successful. Your order has been placed.");
 	}
 }

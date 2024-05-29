@@ -76,6 +76,7 @@ public class MainClass {
 				else if (selection == 6) {
 					currentUser.saveCart();
 					currentUserCart.clearCart();
+					Logger.log("User " + currentUser.getUsername() + " signed out.");
 					currentUser = null;
 				}
 

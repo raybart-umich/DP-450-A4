@@ -48,7 +48,7 @@ public class ProductCatalog {
 		for (int i = 0; i < catalog.size(); i++) {
 			if (catalog.get(i).getName().equalsIgnoreCase(inputProductName)) {
 				Product temp = catalog.get(i);
-				catalog.remove(i);
+				catalog.remove(temp);
 				System.out.println("Product " + inputProductName + " removed from catalog.");
 				return temp;
 			}

@@ -1,6 +1,7 @@
 package edu.depaul;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ public class Logger {
         String timestamp = LocalDateTime.now().format(DATE_TIME_FORMAT);
         String logMessage = timestamp + " - " + message;
 
-        try (PrintWriter writer = new PrintWriter(LOG_PATH)) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(LOG_PATH, true))) {
             writer.println(logMessage);
         } catch (IOException e) {
             System.err.println("Error writing to log file: " + e.getMessage());
