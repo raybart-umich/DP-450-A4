@@ -1,6 +1,7 @@
 package edu.depaul;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 
 public class ProductCatalog {
@@ -40,6 +41,11 @@ public class ProductCatalog {
 	}
 	
 	public void addProduct(Product product) {
+		for (int i = 0; i < catalog.size(); i++) {
+			if (catalog.get(i).getName().equalsIgnoreCase(product.getName())) {
+				throw new InputMismatchException("Product " + product.getName() + " already exists in catalog.");
+			}
+		}
 		catalog.add(product);
 		System.out.println("Product " + product.getName() + " added to catalog.");
 	}

@@ -1,6 +1,7 @@
 package edu.depaul;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class UserDirectory {
 	private static UserDirectory instance;
@@ -25,10 +26,15 @@ public class UserDirectory {
 				return users.get(i);
 			}
 		}
-		return null;
+		throw new InputMismatchException("Username or password incorrect.");
 	}
 
 	public void addUser(User user) {
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUsername().equalsIgnoreCase(user.getUsername())) {
+				throw new InputMismatchException("Username already taken.");
+			}
+		}
 		users.add(user);
 		System.out.println("User " + user.getUsername() + " signed up.");
 	}

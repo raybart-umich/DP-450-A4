@@ -108,9 +108,7 @@ public class MainClass {
 				}
 
 			} catch (InputMismatchException e) {
-	            System.out.println("Invalid input.");
-	            System.out.println("\n");
-	            reader.nextLine(); // clear scanner buffer
+	            System.out.println("Error: " + e.getMessage());
 	        }
 		}
 	}

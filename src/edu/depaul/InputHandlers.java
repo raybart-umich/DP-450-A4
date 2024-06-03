@@ -1,5 +1,6 @@
 package edu.depaul;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputHandlers {
@@ -54,7 +55,7 @@ public class InputHandlers {
 		System.out.print("Enter price for new product: ");
 		double inputPrice = Double.parseDouble(reader.nextLine());
 
-		Product newProduct =ProductFactory.getProduct(inputType, inputName, inputPrice);
+		Product newProduct = ProductFactory.getProduct(inputType, inputName, inputPrice);
 		catalog.addProduct(newProduct);
 		
 		Logger.log("Product " + newProduct.getName() + " added to catalog.");
@@ -83,13 +84,22 @@ public class InputHandlers {
 		System.out.print("\nTotal cost: " + cart.getTotal() + "\n");
 
 		System.out.print("Enter credit card number: ");
-		int inputCreditCard = Integer.parseInt(reader.nextLine());
+		String inputCreditCard = reader.nextLine();
+		if (!inputCreditCard.matches("\\d{16}")) {
+			throw new InputMismatchException("Invalid credit card number.");
+        }
 		
 		System.out.print("Enter expiration date (MM/YY): ");
 		String inputExpirationDate = reader.nextLine();
+		if (!inputExpirationDate.matches("(0[1-9]|1[0-2])/\\d{2}")) {
+			throw new InputMismatchException("Invalid expiration date.");
+        }
 		
 		System.out.print("Enter 4 digit PIN: ");
-		int inputPin = Integer.parseInt(reader.nextLine());
+		String inputPin = reader.nextLine();
+		if (!inputPin.matches("\\d{4}")) {
+			throw new InputMismatchException("Invalid PIN.");
+        }
 		
 		cart.clearCart();
 		currentUser.saveCart();
