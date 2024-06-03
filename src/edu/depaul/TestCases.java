@@ -24,7 +24,7 @@ class TestCases {
 		// removing a product from catalog
 		assert(catalog.removeProduct("java") == testProduct);
 	}
-	
+
 	@Test
 	void testShoppingCart() {
 		ProductCatalog catalog = ProductCatalog.getInstance();
@@ -49,7 +49,7 @@ class TestCases {
 		testCart.removeProductFromCart(testProduct2);
 		assert(testCart.getTotal() == 0);
 	}
-	
+
 	@Test
 	void testOrderProcessingInvalidCreditCard() {
 		String invalidCreditCard = "1234\n12/25\n1234\n";
@@ -62,7 +62,7 @@ class TestCases {
         InputMismatchException thrown = assertThrows(InputMismatchException.class, () -> InputHandlers.inputCheckout(reader, testUser, testCart));
         assertEquals("Invalid credit card number.", thrown.getMessage());
 	}
-	
+
 	@Test
 	void testOrderProcessingInvalidExpirationDate() {
 		String invalidExpirationDate = "1234123412341234\n12/2025\n1234\n";
@@ -75,7 +75,7 @@ class TestCases {
         InputMismatchException thrown = assertThrows(InputMismatchException.class, () -> InputHandlers.inputCheckout(reader, testUser, testCart));
         assertEquals("Invalid expiration date.", thrown.getMessage());
 	}
-	
+
 	@Test
 	void testOrderProcessingInvalidPin() {
 		String invalidPin = "1234123412341234\n12/25\n12345\n";
@@ -86,13 +86,7 @@ class TestCases {
         ShoppingCart testCart = ShoppingCart.getInstance();
 
         InputMismatchException thrown = assertThrows(InputMismatchException.class, () -> InputHandlers.inputCheckout(reader, testUser, testCart));
-        assertEquals("Invalid expiration date.", thrown.getMessage());
-	}
-	
-	@Test
-	void testThrowsError() {
-		fail("Not yet implemented");
-//		assertThrows(InputTypeMismatch.class, [function]);
+        assertEquals("Invalid PIN.", thrown.getMessage());
 	}
 
 }
