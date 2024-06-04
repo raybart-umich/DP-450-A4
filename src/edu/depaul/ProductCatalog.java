@@ -24,7 +24,6 @@ public class ProductCatalog {
 			System.out.println("The product catalog is empty.");
 			return;
 		}
-
 		for (int i = 0; i < catalog.size(); i++) {
 			System.out.println(catalog.get(i).getName() + ": $" + catalog.get(i).getPrice());
 		}
