@@ -15,5 +15,5 @@ Creating a new account (option 2) will create a non-admin account. Admin account
 * A product must be in the catalog to be added to the cart.
 
 ## General use
+* The program is run just like assignments 1 and 2, by clicking the "run" button in Eclipse while in the MainClass file.
 * Once you're signed in and have added some products to the catalog, the system should be intuitive through the command line prompts.
-* Admin accounts have all the same properties as non-admins, including managing and checking out a shopping cart.
