@@ -35,7 +35,6 @@ public class MainClass {
 					System.out.println("Signed in as " + currentUser.getUsername() + ".");
 				}
 				
-				// TODO where to put these lines?
 				ShoppingCart currentUserCart = ShoppingCart.getInstance();
 				currentUserCart.setCartProducts(currentUser.getCart());
 
