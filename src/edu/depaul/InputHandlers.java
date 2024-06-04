@@ -56,6 +56,9 @@ public class InputHandlers {
 		double inputPrice = Double.parseDouble(reader.nextLine());
 
 		Product newProduct = ProductFactory.getProduct(inputType, inputName, inputPrice);
+		if (newProduct == null) {
+			throw new InputMismatchException("Invalid product type.");
+		}
 		catalog.addProduct(newProduct);
 		
 		Logger.log("Product " + newProduct.getName() + " added to catalog.");
@@ -81,7 +84,7 @@ public class InputHandlers {
 		System.out.println("Checking out. Cart contents:");
 		cart.printCart();
 		
-		System.out.print("\nTotal cost: " + cart.getTotal() + "\n");
+		System.out.print("\nTotal cost: $" + cart.getTotal() + "\n");
 
 		System.out.print("Enter credit card number: ");
 		String inputCreditCard = reader.nextLine();
